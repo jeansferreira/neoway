@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  postgres:
+    restart: always
+    image: kiasaki/alpine-postgres:9.5
+    environment:
+      - POSTGRES_USER:'postgres'
+      - POSTGRES_PASSWORD:'Postgres2019!'
+      - POSTGRES_DB:'neoway'
+    ports:
+      - '5432:5432'
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  appgo:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-Postgres
+volumes:
+  database:
